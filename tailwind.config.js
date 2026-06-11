@@ -10,7 +10,13 @@ const tailwind = {
 
   theme: {
     fontFamily: {
-      sans: ["Inter var", "sans-serif"],
+      sans: [
+        "Source Sans 3",
+        "Source Sans Pro",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+      ],
       serif: ["Merriweather", "serif"],
     },
     colors: ({ colors }) => ({
@@ -20,19 +26,37 @@ const tailwind = {
       white: colors.white,
       gray: colors.gray,
       cyan: {
-        ['400']: "#67e8f9",
-        ['500']: "#06b6d4",
-        ['600']: "#0e7490",
+        ["400"]: "#67e8f9",
+        ["500"]: "#06b6d4",
+        ["600"]: "#0e7490",
+      },
+      brand: {
+        red: "#bc1b19",
+        "red-dark": "#c51d18",
+        blue: "#112c5d",
+        "blue-dark": "#0e1f44",
+        violet: "#302950",
+        ink: "#010101",
       },
     }),
-    maxWidth: ({ theme, breakpoints }) => ({
+    maxWidth: {
       none: "none",
       fit: "fit-content",
       full: "100%",
       max: "max-content",
       min: "min-content",
-      ...breakpoints(theme("screens")),
-    }),
+      xs: "20rem",
+      sm: "24rem",
+      md: "28rem",
+      lg: "32rem",
+      xl: "36rem",
+      "2xl": "42rem",
+      "3xl": "48rem",
+      "4xl": "56rem",
+      "5xl": "64rem",
+      "6xl": "72rem",
+      "7xl": "80rem",
+    },
     aspectRatio: {
       auto: "auto",
       ["1/1"]: "1/1",

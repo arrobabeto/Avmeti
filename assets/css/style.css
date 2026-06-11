@@ -7,14 +7,24 @@
 /* global */
 /******************************************************************************/
 body {
-  @apply bg-[#fefefe] text-base font-normal leading-6 text-[#010101] dark:bg-[#191a22] dark:text-[#fefefe];
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  @apply bg-white text-base font-normal leading-6 text-[#010101];
+  font-family:
+    "Source Sans 3", "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    @apply bg-[#191a22] text-[#fefefe];
-  }
+/* brand page gradient: red (left) -> violet -> deep blue (right). Mostly
+   horizontal with a slight downward drift so every section shows the red->blue
+   wash from the Figma design, while the page subtly deepens toward the bottom. */
+.brand-gradient {
+  background: linear-gradient(
+    96deg,
+    #bc1b19 0%,
+    #a81d22 22%,
+    #6d2440 45%,
+    #36294f 62%,
+    #1b2c59 82%,
+    #0e1f44 100%
+  );
 }
 
 *,

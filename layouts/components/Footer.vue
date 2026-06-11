@@ -1,21 +1,98 @@
 <script setup lang="ts">
-  import { useTranslate } from "~/composables/useTranslate"
+  import AvIcon from "~/components/common/AvIcon.vue"
 
-  const t = useTranslate()
-
-  const footer = {
-    text: { en: "© Webentertainer GmbH" },
-  }
+  const nav = [
+    { label: "Home", url: "/" },
+    { label: "Leistungen", url: "/leistungen" },
+    { label: "Über uns", url: "/uber-uns" },
+    { label: "Termin vereinbaren", url: "/#kontakt" },
+  ]
+  const legal = [
+    { label: "Impressum", url: "/impressum" },
+    { label: "Datenschutz", url: "/datenschutz" },
+    { label: "AGB", url: "/agb" },
+  ]
+  const contact = [
+    { icon: "phone", top: "Rufen Sie uns an", strong: "+41 79 704 14 11" },
+    { icon: "mail", top: "Schreiben Sie uns", strong: "info@avmeti.ch" },
+    {
+      icon: "mapPin",
+      top: "Besuchen Sie uns",
+      strong: "Gysulastrasse 72, 5022 Rombach",
+    },
+  ] as const
 </script>
 
 <template>
-  <footer class="border-t border-[#e0e0e0] px-4 py-6 dark:border-[#282a36]">
-    <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
-      <p class="text-sm text-[#4e4e4e] dark:text-[#cbcbcb]">
-        {{ t(footer.text) }}
-      </p>
-      <p class="text-xs text-[#4e4e4e] dark:text-[#cbcbcb]">
-        Orbitype Headless CMS Template
+  <footer class="bg-white px-6 py-12 text-[#374862] lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <NuxtImg
+            src="/img/logo.png"
+            alt="AVMETI Facility Services GmbH"
+            class="h-10 w-auto"
+          />
+          <p class="mt-5 max-w-xs text-sm leading-6 text-[#6b7280]">
+            Über 23 Jahre Berufserfahrung in Reinigung & Facility Services für
+            Schweizer KMU.
+          </p>
+          <p class="mt-5 text-lg font-bold text-brand-red">
+            Einfach guter Service.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-brand-ink">Navigation</h3>
+          <ul class="mt-5 space-y-3">
+            <li v-for="l of nav" :key="l.url">
+              <NuxtLinkLocale
+                :to="l.url"
+                class="text-[15px] text-[#6b7280] transition hover:text-brand-blue"
+              >
+                {{ l.label }}
+              </NuxtLinkLocale>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-brand-ink">Rechtliches</h3>
+          <ul class="mt-5 space-y-3">
+            <li v-for="l of legal" :key="l.url">
+              <NuxtLinkLocale
+                :to="l.url"
+                class="text-[15px] text-[#6b7280] transition hover:text-brand-blue"
+              >
+                {{ l.label }}
+              </NuxtLinkLocale>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-brand-ink">Kontakt</h3>
+          <ul class="mt-5 space-y-4">
+            <li v-for="c of contact" :key="c.strong" class="flex gap-3">
+              <span class="mt-0.5 size-5 shrink-0 text-brand-red">
+                <AvIcon :name="c.icon" />
+              </span>
+              <span class="text-sm leading-5">
+                <span class="block text-[#9ca3af]">{{ c.top }}</span>
+                <span class="font-semibold text-brand-ink">{{ c.strong }}</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="my-8 border-[#ececec]" />
+
+      <p class="text-center text-sm leading-6 text-[#6b7280]">
+        © 2026 AVMETI Facility Services. Alle Rechte vorbehalten | Made with ❤️
+        in 🇨🇭 by Bexolutions Marketing und Vertrieb AG, Wo Meine Marke zur
+        Nummer 1 wird – Digital Marketing, Business Development, Websites,
+        Social Media & Videos.
       </p>
     </div>
   </footer>
