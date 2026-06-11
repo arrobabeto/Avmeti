@@ -6,6 +6,13 @@
       "headers": {
         "X-API-KEY": "${env:ORBITYPE_API_SQL_KEY}"
       }
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "${env:FIGMA_ACCESS_TOKEN}"
+      }
     }
   }
 }
