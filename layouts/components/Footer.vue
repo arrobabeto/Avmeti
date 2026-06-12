@@ -2,16 +2,25 @@
   import AvIcon from "~/components/common/AvIcon.vue"
 
   const nav = [
-    { label: "Home", url: "/" },
-    { label: "Leistungen", url: "/leistungen" },
-    { label: "Über uns", url: "/uber-uns" },
-    { label: "Termin vereinbaren", url: "/#kontakt" },
-  ]
+    { label: "Home", to: { name: "slug" } },
+    {
+      label: "Leistungen",
+      to: { name: "slug", params: { slug: "leistungen" } },
+    },
+    { label: "Über uns", to: { name: "uber-uns" } },
+    { label: "Termin vereinbaren", to: { name: "slug", hash: "#kontakt" } },
+  ] as const
   const legal = [
-    { label: "Impressum", url: "/impressum" },
-    { label: "Datenschutz", url: "/datenschutz" },
-    { label: "AGB", url: "/agb" },
-  ]
+    {
+      label: "Impressum",
+      to: { name: "slug", params: { slug: "impressum" } },
+    },
+    {
+      label: "Datenschutz",
+      to: { name: "slug", params: { slug: "datenschutz" } },
+    },
+    { label: "AGB", to: { name: "slug", params: { slug: "agb" } } },
+  ] as const
   const contact = [
     { icon: "phone", top: "Rufen Sie uns an", strong: "+41 79 704 14 11" },
     { icon: "mail", top: "Schreiben Sie uns", strong: "info@avmeti.ch" },
@@ -24,14 +33,14 @@
 </script>
 
 <template>
-  <footer class="bg-white px-6 py-12 text-[#374862] lg:px-12">
-    <div class="mx-auto max-w-7xl">
+  <footer class="bg-white px-6 pb-[54px] pt-11 text-[#374862]">
+    <div class="mx-auto max-w-[1266px]">
       <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <NuxtImg
             src="/img/logo.png"
             alt="AVMETI Facility Services GmbH"
-            class="h-10 w-auto"
+            class="h-[60px] w-auto"
           />
           <p class="mt-5 max-w-xs text-sm leading-6 text-[#6b7280]">
             Über 23 Jahre Berufserfahrung in Reinigung & Facility Services für
@@ -45,9 +54,9 @@
         <div>
           <h3 class="text-lg font-semibold text-brand-ink">Navigation</h3>
           <ul class="mt-5 space-y-3">
-            <li v-for="l of nav" :key="l.url">
+            <li v-for="l of nav" :key="l.label">
               <NuxtLinkLocale
-                :to="l.url"
+                :to="l.to"
                 class="text-[15px] text-[#6b7280] transition hover:text-brand-blue"
               >
                 {{ l.label }}
@@ -59,9 +68,9 @@
         <div>
           <h3 class="text-lg font-semibold text-brand-ink">Rechtliches</h3>
           <ul class="mt-5 space-y-3">
-            <li v-for="l of legal" :key="l.url">
+            <li v-for="l of legal" :key="l.label">
               <NuxtLinkLocale
-                :to="l.url"
+                :to="l.to"
                 class="text-[15px] text-[#6b7280] transition hover:text-brand-blue"
               >
                 {{ l.label }}
@@ -86,9 +95,9 @@
         </div>
       </div>
 
-      <hr class="my-8 border-[#ececec]" />
+      <hr class="mt-[65px] border-[#ececec]" />
 
-      <p class="text-center text-sm leading-6 text-[#6b7280]">
+      <p class="mt-[65px] text-center text-sm leading-6 text-[#6b7280]">
         © 2026 AVMETI Facility Services. Alle Rechte vorbehalten | Made with ❤️
         in 🇨🇭 by Bexolutions Marketing und Vertrieb AG, Wo Meine Marke zur
         Nummer 1 wird – Digital Marketing, Business Development, Websites,

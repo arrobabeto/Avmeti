@@ -6,7 +6,16 @@ import pluginVue from "eslint-plugin-vue"
 export default tseslint.config(
   // settings
   //////////////////////////////////////////////////////////////////////////////
-  { ignores: [".nuxt/", "vite-env.d.ts"] },
+  {
+    ignores: [
+      ".nuxt/",
+      ".output/",
+      "dist/",
+      "playwright-report/",
+      "test-results/",
+      "vite-env.d.ts",
+    ],
+  },
   {
     languageOptions: {
       parser: vueParser,

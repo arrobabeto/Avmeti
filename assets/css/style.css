@@ -27,6 +27,14 @@ body {
   );
 }
 
+.about-gradient {
+  background: linear-gradient(90deg, #112c5d 0%, #302950 50%, #bc1b19 100%);
+}
+
+.about-gradient-horizontal {
+  background: linear-gradient(90deg, #bc1b19 0%, #302950 50%, #112c5d 100%);
+}
+
 *,
 ::before,
 ::after {

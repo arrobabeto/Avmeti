@@ -27,6 +27,30 @@ Open:
 - `http://localhost:3000/`
 - `http://localhost:3000/de`
 
+### Nuxt i18n compatibility
+
+Keep `@nuxtjs/i18n` pinned to `10.4.0` or a newer version verified by this
+repository. Nuxt `3.16+` uses Unhead 2, while `@nuxtjs/i18n@8.5.6` imports the
+removed `getActiveHead` API and fails during production builds with:
+
+```text
+"getActiveHead" is not exported by "unhead"
+```
+
+For a fresh installation or when repairing an old lockfile:
+
+```bash
+npm install --save-dev --save-exact @nuxtjs/i18n@10.4.0
+npx nuxi cleanup
+npm run typecheck
+npm run build
+```
+
+This project enables `experimental.typedPages`. Internal
+`NuxtLinkLocale` links must therefore use named route objects such as
+`{ name: "posts" }` or `{ name: "slug", params: { slug: "leistungen" } }`
+instead of untyped path strings.
+
 ## Local CMS modes
 
 Use one of these modes depending on your goal:
@@ -85,15 +109,15 @@ Same section system and rendering code; different data per connector/key.
 
 ### Important files
 
-| Area | Path |
-|------|------|
-| Generic pages | `pages/[[slug]].vue` → `server/api/pages/index.get.ts` |
-| Detail routes | `pages/platform/[slug].vue`, `pages/solutions/[slug].vue`, `pages/vs/[slug].vue` |
-| Posts / docs | `pages/posts/[id]/[[slug]].vue`, `pages/docs/[id]/[[slug]].vue` |
-| API handlers | `server/api/*` |
-| Section renderer | `components/sections/AnySection.vue` |
-| Section type | `types/util/Section.d.ts` |
-| Welcome fallback | `server/api/pages/index.get.ts` |
+| Area             | Path                                                                             |
+| ---------------- | -------------------------------------------------------------------------------- |
+| Generic pages    | `pages/[[slug]].vue` → `server/api/pages/index.get.ts`                           |
+| Detail routes    | `pages/platform/[slug].vue`, `pages/solutions/[slug].vue`, `pages/vs/[slug].vue` |
+| Posts / docs     | `pages/posts/[id]/[[slug]].vue`, `pages/docs/[id]/[[slug]].vue`                  |
+| API handlers     | `server/api/*`                                                                   |
+| Section renderer | `components/sections/AnySection.vue`                                             |
+| Section type     | `types/util/Section.d.ts`                                                        |
+| Welcome fallback | `server/api/pages/index.get.ts`                                                  |
 
 ### Sections system
 

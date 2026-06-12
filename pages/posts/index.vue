@@ -19,9 +19,12 @@
   const postsPerPage = 2
   const hasMore = ref(false)
   const isLoading = ref(false)
-  const localeCodes = computed(() =>
-    locales.value.map((x) => (typeof x === "string" ? x : x.code)),
-  )
+  const localeCodes = computed(() => {
+    const configured = locales.value.map((x) =>
+      typeof x === "string" ? x : x.code,
+    )
+    return (["en", "de"] as const).filter((code) => configured.includes(code))
+  })
 
   async function load() {
     isLoading.value = true
@@ -51,8 +54,18 @@
     pagination.value += 1
   }
 
-  async function switchLocale(code: string) {
+  async function switchLocale(code: "en" | "de") {
     await setLocale(code)
+  }
+
+  function postTarget(post: IPost) {
+    return {
+      name: "posts-id-slug" as const,
+      params: {
+        id: String(post.id),
+        slug: slug(t(post.title)),
+      },
+    }
   }
 
   await load()
@@ -62,7 +75,7 @@
 </script>
 
 <template>
-  <main class="max-w-3xl mx-auto w-full space-y-5 p-4 sm:py-8">
+  <main class="mx-auto w-full max-w-3xl space-y-5 p-4 sm:py-8">
     <header class="space-y-1">
       <p
         class="text-xs font-semibold uppercase tracking-[0.2em] text-[#1384ff]"
@@ -78,7 +91,7 @@
     <NuxtLinkLocale
       v-for="p of posts"
       :key="p.id"
-      :to="`/posts/${p.id}/${slug(t(p.title))}`"
+      :to="postTarget(p)"
       class="block rounded-2xl border border-[#e0e0e0] bg-[#fefefe]/95 p-4 transition hover:-translate-y-0.5 hover:shadow-sm dark:border-[#282a36] dark:bg-[#191a22]/95"
     >
       <h2
