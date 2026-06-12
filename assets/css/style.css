@@ -27,6 +27,20 @@ body {
   );
 }
 
+/* brand gradient fills for icon badges and stat bars (defined after the global
+   `* { background: none }` reset so they win the cascade, like .brand-gradient) */
+.bg-icon-grad {
+  background-image: linear-gradient(135deg, #bc1b19 0%, #112c5d 100%);
+}
+
+.bg-stats-grad {
+  background-image: linear-gradient(90deg, #bc1b19 0%, #112c5d 100%);
+}
+
+.bg-soft {
+  background-color: #f4f5f7;
+}
+
 .about-gradient {
   background: linear-gradient(90deg, #112c5d 0%, #302950 50%, #bc1b19 100%);
 }
